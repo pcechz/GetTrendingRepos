@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.pcechz.getmega.databinding.FragmentHomeBinding
+import com.pcechz.getmega.ui.viewModel.RepoViewModel
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -14,6 +16,8 @@ import com.pcechz.getmega.databinding.FragmentHomeBinding
 class HomeFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener  {
 
     private var _binding: FragmentHomeBinding? = null
+
+    private val repoModel by viewModels<RepoViewModel>()
 
 
     // This property is only valid between onCreateView and
