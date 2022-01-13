@@ -11,4 +11,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="toolbar_title_color">#25282B</color>
+    <color name="titleColor">#52575C</color>
+    <color name="borderColorRepo">#E8E8E8</color>
 </resources>

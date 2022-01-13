@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.MainActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
@@ -34,10 +34,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:fontFamily="sans-serif-medium"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginBottom="14dp"
+                    android:fontFamily="@font/roboto_medium"
                     android:text="@string/toolBar_trending"
                     android:textColor="@color/toolbar_title_color"
-                    android:textSize="21dp" />
+                    android:textSize="21sp" />
             </RelativeLayout>
         </androidx.appcompat.widget.Toolbar>
 
