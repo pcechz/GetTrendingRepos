@@ -23,6 +23,8 @@ import javax.annotation.Resource
 
 class RepoViewModel(private val repository: GithubRepository) : ViewModel() {
 
+
+
         fun getRepo(): Flowable<PagingData<Repo>> {
             return repository
                 .getRepos()

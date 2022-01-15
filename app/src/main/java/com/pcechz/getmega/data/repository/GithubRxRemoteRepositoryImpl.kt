@@ -7,8 +7,9 @@ import androidx.paging.rxjava2.flowable
 import com.pcechz.getmega.data.db.RepoDatabase
 import com.pcechz.getmega.data.model.Repo
 import io.reactivex.Flowable
+import javax.inject.Inject
 
-class GithubRxRemoteRepositoryImpl (
+class GithubRxRemoteRepositoryImpl  @Inject constructor  (
     private val database: RepoDatabase,
     private val remoteMediator: GithubRxRemoteMediator
 ): GithubRepository {
@@ -19,7 +20,6 @@ class GithubRxRemoteRepositoryImpl (
                 pageSize = 20,
                 enablePlaceholders = true,
                 maxSize = 100,
-                prefetchDistance = 5,
                 ),
             remoteMediator = remoteMediator,
             pagingSourceFactory = { database.RepoRxDao().selectAll() }

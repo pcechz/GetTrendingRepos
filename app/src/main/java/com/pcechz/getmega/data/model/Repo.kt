@@ -31,7 +31,10 @@ data class ItemHolder(
     val page: Int = 0,
 
     @SerializedName("items")
-    val results: List<Repo>
+    val results: List<Repo>,
+
+    val hasMore: Boolean = itemCount > page
+
 ): Parcelable {
 
     @IgnoredOnParcel

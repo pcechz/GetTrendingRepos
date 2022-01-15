@@ -94,7 +94,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), SwipeRefreshLayout.OnRefr
                 binding.shimmerContainer.stopShimmer()
             }
             binding.apply {
-              //  shimmerContainer.isVisible = loadState.source.refresh is LoadState.Loading
+                //shimmerContainer.isVisible = loadState.source.refresh is LoadState.Loading
                 recycler.isVisible = loadState.source.refresh is LoadState.NotLoading
                 retryButton.isVisible = loadState.source.refresh is LoadState.Error
                 noNetImg.isVisible = loadState.source.refresh is LoadState.Error
@@ -117,7 +117,6 @@ class HomeFragment : Fragment(R.layout.fragment_home), SwipeRefreshLayout.OnRefr
 
         mDisposable.add(repoModel.getRepo().subscribe {
             adapter.submitData(lifecycle, it)
-            total = adapter.itemCount
         })
 
     }

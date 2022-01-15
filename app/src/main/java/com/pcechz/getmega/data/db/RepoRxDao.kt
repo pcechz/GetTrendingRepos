@@ -5,9 +5,11 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.pcechz.getmega.data.api.RepoResponse
 import com.pcechz.getmega.data.model.ItemHolder
 import com.pcechz.getmega.data.model.Repo
 import com.pcechz.getmega.data.model.RepoRemoteKeys
+import io.reactivex.Maybe
 
 @Dao
 interface RepoRxDao {
@@ -17,6 +19,9 @@ interface RepoRxDao {
 
     @Query("SELECT * FROM repos ORDER BY id ASC")
     fun selectAll(): PagingSource<Int, Repo>
+
+    @Query("SELECT * FROM repos ORDER BY id ASC")
+    fun getAll(): List<Repo>
 
     @Query("DELETE FROM repos")
     fun clearRepos()
