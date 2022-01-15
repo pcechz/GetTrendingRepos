@@ -10,4 +10,11 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="toolBar_trending">Trending</string>
+    <string name="search_query">%s</string>
+    <string name="sort_by_stars">Sort By Stars</string>
+    <string name="sort_by_names">Sort By Names</string>
+    <string name="description_text">Description Text</string>
+    <string name="retry">Retry</string>
+    <string name="an_alien_is_probably_blocking_your_signal">An alien probably blocked your signal!</string>
+    <string name="something_went_wrong">Something Went Wrong</string>
 </resources>

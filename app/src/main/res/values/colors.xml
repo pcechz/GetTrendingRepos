@@ -12,5 +12,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="toolbar_title_color">#25282B</color>
     <color name="titleColor">#52575C</color>
+    <color name="error_title">#4A4A4A</color>
+    <color name="error_subtitle">#929292</color>
+    <color name="retry">#31BO57</color>
     <color name="borderColorRepo">#E8E8E8</color>
 </resources>
