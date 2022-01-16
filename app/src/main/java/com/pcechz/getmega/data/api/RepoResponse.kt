@@ -1,7 +1,7 @@
 package com.pcechz.getmega.data.api
 
 import com.google.gson.annotations.SerializedName
-import com.pcechz.getmega.data.model.Repo
+import com.pcechz.getmega.data.model.ItemHolder.Repo
 
 
 data class RepoResponse (

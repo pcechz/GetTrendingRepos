@@ -5,7 +5,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.rxjava2.flowable
 import com.pcechz.getmega.data.db.RepoDatabase
-import com.pcechz.getmega.data.model.Repo
+import com.pcechz.getmega.data.model.ItemHolder.Repo
 import io.reactivex.Flowable
 import javax.inject.Inject
 

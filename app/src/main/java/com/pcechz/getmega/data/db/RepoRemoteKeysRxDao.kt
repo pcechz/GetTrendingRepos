@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.pcechz.getmega.data.model.RepoRemoteKeys
+import com.pcechz.getmega.data.model.ItemHolder.RepoRemoteKeys
 
 @Dao
 interface RepoRemoteKeysRxDao {

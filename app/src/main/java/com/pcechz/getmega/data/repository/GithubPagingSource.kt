@@ -4,7 +4,6 @@ import androidx.paging.rxjava2.RxPagingSource
 import com.pcechz.getmega.data.api.repoApi
 import com.pcechz.getmega.data.mapper.RepoMapper
 import com.pcechz.getmega.data.model.ItemHolder
-import com.pcechz.getmega.data.model.Repo
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
@@ -18,9 +17,9 @@ private const val STARTING_PAGE_INDEX = 1
 class GithubPagingSource  @Inject constructor(
     private val service: repoApi,
     private val mapper: RepoMapper,
-) : RxPagingSource<Int, Repo>() {
+) : RxPagingSource<Int, ItemHolder.Repo>() {
 
-    override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, Repo>> {
+    override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, ItemHolder.Repo>> {
         val position = params.key ?: STARTING_PAGE_INDEX
 
         return service.getData(position)
@@ -30,7 +29,7 @@ class GithubPagingSource  @Inject constructor(
             .onErrorReturn { LoadResult.Error(it) }
     }
 
-    private fun toLoadResult(data: ItemHolder, position: Int): LoadResult<Int, Repo> {
+    private fun toLoadResult(data: ItemHolder, position: Int): LoadResult<Int, ItemHolder.Repo> {
         return LoadResult.Page(
             data = data.results,
             prevKey = if (position == STARTING_PAGE_INDEX) null else position - 1,

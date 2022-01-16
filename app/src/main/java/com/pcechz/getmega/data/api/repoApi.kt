@@ -1,7 +1,7 @@
 package com.pcechz.getmega.data.api
 
 import com.pcechz.getmega.data.model.ItemHolder
-import com.pcechz.getmega.data.model.Repo
+import com.pcechz.getmega.data.model.ItemHolder.Repo
 import io.reactivex.Observable
 import io.reactivex.Single
 import okhttp3.OkHttpClient

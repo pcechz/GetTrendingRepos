@@ -1,12 +1,13 @@
 package com.pcechz.getmega.data.model
 
+ 
 object TestRepoData {
     val repos = arrayOf(
-        Repo(
+        ItemHolder.Repo(
             0,
             "flutter",
-        "flutter/flutter",
-        "Flutter makes it easy and fast to build beautiful apps for mobile and beyond.",
+            "flutter/flutter",
+            "Flutter makes it easy and fast to build beautiful apps for mobile and beyond.",
             "https://api.github.com/repos/flutter/flutter",
             200,
             200,
@@ -26,7 +27,7 @@ object TestRepoData {
             false
 
         ),
-        Repo(
+        ItemHolder.Repo(
             1,
             "flutter2",
             "flutter/flutter2",
@@ -51,7 +52,7 @@ object TestRepoData {
 
         ),
 
-        Repo(
+        ItemHolder.Repo(
             2,
             "flutter3",
             "flutter/flutter3",
@@ -75,7 +76,7 @@ object TestRepoData {
             false
 
         ),
-        Repo(
+        ItemHolder.Repo(
             3,
             "flutter4",
             "flutter/flutter4",
@@ -100,7 +101,7 @@ object TestRepoData {
 
         ),
 
-        Repo(
+        ItemHolder.Repo(
             4,
             "flutter5",
             "flutter/flutter5",
@@ -125,7 +126,7 @@ object TestRepoData {
 
         ),
 
-        Repo(
+        ItemHolder.Repo(
             5,
             "flutter6",
             "flutter/flutter6",
@@ -150,7 +151,7 @@ object TestRepoData {
 
         ),
 
-        Repo(
+        ItemHolder.Repo(
             6,
             "flutter7",
             "flutter/flutter7",
@@ -174,7 +175,7 @@ object TestRepoData {
             false
 
         ),
-        Repo(
+        ItemHolder.Repo(
             7,
             "flutter8",
             "flutter/flutter8",
@@ -198,7 +199,7 @@ object TestRepoData {
             false
 
         ),
-        Repo(
+        ItemHolder.Repo(
             8,
             "flutter9",
             "flutter/flutter9",
@@ -222,7 +223,7 @@ object TestRepoData {
             false
 
         ),
-        Repo(
+        ItemHolder.Repo(
             9,
             "flutter9",
             "flutter/flutter9",

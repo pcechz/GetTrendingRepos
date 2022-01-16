@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import com.pcechz.getmega.data.api.RepoResponse
 import com.pcechz.getmega.data.model.ItemHolder
 import com.pcechz.getmega.data.model.Owner
-import com.pcechz.getmega.data.model.Repo
+import com.pcechz.getmega.data.model.ItemHolder.Repo
 import java.util.*
 
 class RepoMapper {

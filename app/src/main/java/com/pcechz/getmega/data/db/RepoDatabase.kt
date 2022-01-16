@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.pcechz.getmega.data.model.Repo
-import com.pcechz.getmega.data.model.RepoRemoteKeys
+import com.pcechz.getmega.data.model.ItemHolder.Repo
+import com.pcechz.getmega.data.model.ItemHolder.RepoRemoteKeys
 
 @Database(
     entities = [Repo::class, RepoRemoteKeys::class],

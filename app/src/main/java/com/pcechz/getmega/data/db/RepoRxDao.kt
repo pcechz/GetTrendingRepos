@@ -7,8 +7,8 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.pcechz.getmega.data.api.RepoResponse
 import com.pcechz.getmega.data.model.ItemHolder
-import com.pcechz.getmega.data.model.Repo
-import com.pcechz.getmega.data.model.RepoRemoteKeys
+import com.pcechz.getmega.data.model.ItemHolder.Repo
+import com.pcechz.getmega.data.model.ItemHolder.RepoRemoteKeys
 import io.reactivex.Maybe
 
 @Dao
@@ -20,8 +20,8 @@ interface RepoRxDao {
     @Query("SELECT * FROM repos ORDER BY id ASC")
     fun selectAll(): PagingSource<Int, Repo>
 
-    @Query("SELECT * FROM repos ORDER BY id ASC")
-    fun getAll(): List<Repo>
+//    @Query("SELECT * FROM repos ORDER BY id ASC")
+//    fun getAll(): List<Repo>
 
     @Query("DELETE FROM repos")
     fun clearRepos()

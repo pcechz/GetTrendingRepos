@@ -8,8 +8,7 @@ import com.pcechz.getmega.data.api.repoApi
 import com.pcechz.getmega.data.db.RepoDatabase
 import com.pcechz.getmega.data.mapper.RepoMapper
 import com.pcechz.getmega.data.model.ItemHolder
-import com.pcechz.getmega.data.model.Repo
-import com.pcechz.getmega.data.model.RepoRemoteKeys
+import com.pcechz.getmega.data.model.ItemHolder.Repo
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import java.io.InvalidObjectException
@@ -77,7 +76,7 @@ class GithubRxRemoteMediator (
             val prevKey = if (page == 1) null else page - 1
             val nextKey = if (data.endOfPage) null else page + 1
             val keys = data.results.map {
-                RepoRemoteKeys(repoId = it.id, prevKey = prevKey, nextKey = nextKey)
+                ItemHolder.RepoRemoteKeys(repoId = it.id, prevKey = prevKey, nextKey = nextKey)
             }
             database.RepoRemoteKeysRxDao().insertAll(keys)
             database.RepoRxDao().insertAll(data.results)
@@ -90,19 +89,19 @@ class GithubRxRemoteMediator (
         return data
     }
 
-    private fun getRemoteKeyForLastItem(state: PagingState<Int, Repo>): RepoRemoteKeys? {
+    private fun getRemoteKeyForLastItem(state: PagingState<Int, Repo>): ItemHolder.RepoRemoteKeys? {
         return state.pages.lastOrNull { it.data.isNotEmpty() }?.data?.lastOrNull()?.let { repo ->
             database.RepoRemoteKeysRxDao().remoteKeysByRepoId(repo.id)
         }
     }
 
-    private fun getRemoteKeyForFirstItem(state: PagingState<Int, Repo>): RepoRemoteKeys? {
+    private fun getRemoteKeyForFirstItem(state: PagingState<Int, Repo>): ItemHolder.RepoRemoteKeys? {
         return state.pages.firstOrNull { it.data.isNotEmpty() }?.data?.firstOrNull()?.let { repo ->
             database.RepoRemoteKeysRxDao().remoteKeysByRepoId(repo.id)
         }
     }
 
-    private fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, Repo>): RepoRemoteKeys? {
+    private fun getRemoteKeyClosestToCurrentPosition(state: PagingState<Int, Repo>): ItemHolder.RepoRemoteKeys? {
         return state.anchorPosition?.let { position ->
             state.closestItemToPosition(position)?.id?.let { id ->
                 database.RepoRemoteKeysRxDao().remoteKeysByRepoId(id)

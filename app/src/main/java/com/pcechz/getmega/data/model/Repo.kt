@@ -40,66 +40,66 @@ data class ItemHolder(
     @IgnoredOnParcel
     val endOfPage = itemCount == page
 
+
+    @Parcelize
+    @Entity(tableName = "repos")
+
+    data class Repo(
+        @PrimaryKey(autoGenerate = true)
+        @SerializedName("id")
+        val id: Long = 0,
+        @SerializedName("name")
+        val name: String,
+
+        @SerializedName("full_name")
+        val fullName: String,
+
+        @SerializedName("description")
+        val description: String?,
+
+        @SerializedName("html_url")
+        val url: String,
+
+        @SerializedName("stargazers_count")
+        val stars: Int,
+
+        @SerializedName("forks_count")
+        val forks: Int,
+
+        @SerializedName("language")
+        val language: String?,
+
+        @SerializedName("languageColor")
+        val languageColor: String?,
+
+        @SerializedName("watchers")
+        val watchers: Int,
+        @Expose
+        @Embedded
+        @SerializedName("owner")
+        val owner: Owner,
+
+        @SerializedName("created_at")
+        val createDate: String,
+
+        @SerializedName("updated_at")
+        val updateDate: String,
+
+        @SerializedName("open_issues")
+        val openIssues: Int,
+
+        var expand: Boolean = false
+
+    ) : Parcelable
+
+    @Parcelize
+    @Entity(tableName = "repo_remote_keys")
+    data class RepoRemoteKeys(
+        @PrimaryKey val repoId: Long,
+        val prevKey: Int?,
+        val nextKey: Int?
+    ) : Parcelable
 }
-
-@Parcelize
-@Entity(tableName = "repos")
-
-data class Repo(
-    @PrimaryKey(autoGenerate = true)
-    @SerializedName("id")
-    val id: Long = 0,
-    @SerializedName("name")
-    val name: String,
-
-    @SerializedName("full_name")
-    val fullName: String,
-
-    @SerializedName("description")
-    val description: String?,
-
-    @SerializedName("html_url")
-    val url: String,
-
-    @SerializedName("stargazers_count")
-    val stars: Int,
-
-    @SerializedName("forks_count")
-    val forks: Int,
-
-    @SerializedName("language")
-    val language: String?,
-
-    @SerializedName("languageColor")
-    val languageColor: String?,
-
-    @SerializedName("watchers")
-    val watchers: Int,
-    @Expose
-    @Embedded
-    @SerializedName("owner")
-    val owner: Owner,
-
-    @SerializedName("created_at")
-    val createDate: String,
-
-    @SerializedName("updated_at")
-    val updateDate: String,
-
-    @SerializedName("open_issues")
-    val openIssues: Int,
-
-    var expand : Boolean = false
-
-) : Parcelable
-
-@Parcelize
-@Entity(tableName = "repo_remote_keys")
-data class RepoRemoteKeys(
-    @PrimaryKey val repoId: Long,
-    val prevKey: Int?,
-    val nextKey: Int?
-) : Parcelable
 
 class ObservableTypeAdapterFactory : TypeAdapterFactory {
 

@@ -4,7 +4,7 @@ import androidx.room.Room
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.pcechz.getmega.data.model.Owner
-import com.pcechz.getmega.data.model.Repo
+import com.pcechz.getmega.data.model.ItemHolder.Repo
 import com.pcechz.getmega.data.model.TestRepoData
 import junit.framework.Assert.assertEquals
 import org.junit.*
@@ -40,7 +40,7 @@ import java.io.IOException
         val repos = listOf(TestRepoData.repos[1], TestRepoData.repos[2])
         repoDao.insertAll(repos)
 
-        val allRepos =  repoDao.getAll()
+        val allRepos =  repoDao.selectAll()
         assertEquals(repos, allRepos)
     }
 
@@ -52,7 +52,7 @@ import java.io.IOException
             TestRepoData.repos[4])
         repoDao.insertAll(repos)
 
-        val allRepos = repoDao.getAll()
+        val allRepos = repoDao.selectAll()
         val expectedRepos = repos.sortedByDescending { it.stars }
         assertEquals(expectedRepos, allRepos)
     }
@@ -70,7 +70,7 @@ import java.io.IOException
         repoDao.insertAll(repos)
         repoDao.insertAll(repos2)
 
-        val allRepos = repoDao.getAll()
+        val allRepos = repoDao.selectAll()
         val expectedRepos = listOf(
             TestRepoData.repos[1],
             TestRepoData.repos[2],
@@ -108,7 +108,7 @@ import java.io.IOException
         ) }
         repoDao.insertAll(repos)
 
-        val retrievedRepo = repoDao.getAll()
+        val retrievedRepo = repoDao.selectAll()
         assertEquals(10, retrievedRepo.size)
     }
 

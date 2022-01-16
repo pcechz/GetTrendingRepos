@@ -9,6 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.paging.LoadState
+import androidx.paging.map
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.pcechz.getmega.R
 import com.pcechz.getmega.data.MyInjection
@@ -17,9 +19,12 @@ import com.pcechz.getmega.databinding.FragmentHomeBinding
 import com.pcechz.getmega.ui.adapter.RepoAdapter
 import com.pcechz.getmega.ui.adapter.RepoLoadState
 import com.pcechz.getmega.ui.viewModel.RepoViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.internal.util.NotificationLite.disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.repo_load_state.*
+import java.util.*
 
 
 /**
@@ -35,6 +40,8 @@ class HomeFragment : Fragment(R.layout.fragment_home), SwipeRefreshLayout.OnRefr
     private var total: Int = 0
     private val mDisposable = CompositeDisposable()
     private lateinit var repoModel: RepoViewModel
+    private lateinit var repoAdapter: RepoAdapter
+
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -56,17 +63,17 @@ class HomeFragment : Fragment(R.layout.fragment_home), SwipeRefreshLayout.OnRefr
         repoModel = ViewModelProvider(this, MyInjection.provideRxRemoteViewModel(view.context)).get(
             RepoViewModel::class.java)
 
-        val adapter = RepoAdapter()
-
-
         binding.apply {
 
             recycler.apply {
+                layoutManager = LinearLayoutManager(activity)
+                repoAdapter = RepoAdapter()
+                adapter = repoAdapter
                 setHasFixedSize(true)
                 itemAnimator = null
-                this.adapter = adapter.withLoadStateHeaderAndFooter(
-                    header = RepoLoadState { adapter.retry() },
-                    footer = RepoLoadState { adapter.retry() }
+                this.adapter = repoAdapter.withLoadStateHeaderAndFooter(
+                    header = RepoLoadState { repoAdapter.retry() },
+                    footer = RepoLoadState { repoAdapter.retry() }
                 )
                 postponeEnterTransition()
                 viewTreeObserver.addOnPreDrawListener {
@@ -76,7 +83,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), SwipeRefreshLayout.OnRefr
             }
 
             retryButton.setOnClickListener {
-                adapter.retry()
+                repoAdapter.retry()
             }
         }
 
@@ -84,7 +91,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), SwipeRefreshLayout.OnRefr
 
 
 
-        adapter.addLoadStateListener { loadState ->
+        repoAdapter.addLoadStateListener { loadState ->
             if (loadState.source.refresh is LoadState.Loading)
             {
                 binding.shimmerContainer.visibility = View.VISIBLE
@@ -104,7 +111,7 @@ class HomeFragment : Fragment(R.layout.fragment_home), SwipeRefreshLayout.OnRefr
                 // no results found
                 if (loadState.source.refresh is LoadState.NotLoading &&
                     loadState.append.endOfPaginationReached &&
-                    adapter.itemCount < 1
+                    repoAdapter.itemCount < 1
                 ) {
                     recycler.isVisible = false
                 } else {
@@ -116,10 +123,29 @@ class HomeFragment : Fragment(R.layout.fragment_home), SwipeRefreshLayout.OnRefr
 
 
         mDisposable.add(repoModel.getRepo().subscribe {
-            adapter.submitData(lifecycle, it)
+            repoAdapter.submitData(lifecycle, it)
         })
 
     }
+
+    // method to sort repo list by names using comparator and notify adapter
+    fun sortByNames() {
+        // first check if there is data in list
+       repoModel.getRepositoryLiveData().toString();
+    }
+
+//    // method to sort repo list by stars using comparator and notify adapter
+//    fun sortByStars() {
+//        // first check if there is data in list
+//        viewModel.getRepositoryLiveData().value?.let {
+//            if (!it.data.isNullOrEmpty()) {
+//                // sort in ascending
+//                Collections.sort(it.data,
+//                    kotlin.Comparator { t1, t2 -> t1.stars.toInt().compareTo(t2.stars.toInt()) })
+//                listAdapter.setRepositories(it.data)
+//            }
+//        }
+//    }
 
     override fun onDestroyView() {
         super.onDestroyView()
