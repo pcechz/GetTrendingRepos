@@ -21,6 +21,7 @@ class RepoAdapter: PagingDataAdapter<Repo, RepoAdapter.ViewHolder>(REPO_COMPARAT
 
     companion object {
 
+
         private val REPO_COMPARATOR = object : DiffUtil.ItemCallback<Repo>() {
             override fun areItemsTheSame(oldItem: Repo, newItem: Repo) = oldItem.id == newItem.id
 

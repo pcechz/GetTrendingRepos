@@ -15,7 +15,7 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.rule.ActivityTestRule
 import com.pcechz.getmega.R
 import com.pcechz.getmega.data.model.ItemHolder
-import com.pcechz.getmega.data.model.Repo
+import com.pcechz.getmega.data.model.ItemHolder.Repo
 import com.pcechz.getmega.data.model.TestRepoData
 import com.pcechz.getmega.ui.adapter.RepoAdapter
 import junit.framework.TestCase

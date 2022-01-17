@@ -165,6 +165,14 @@ class HomeFragment : Fragment(R.layout.fragment_home), SwipeRefreshLayout.OnRefr
 
 
     override fun onRefresh() {
+        mDisposable.dispose()
+
+        mDisposable.add(repoModel.getRepo().subscribe {
+            repoAdapter.submitData(lifecycle, it)
+        })
+        repoAdapter.notifyDataSetChanged()
+
+         binding.srefresh.isRefreshing = false
 
     }
 

@@ -38,8 +38,7 @@ data class ItemHolder(
 ): Parcelable {
 
     @IgnoredOnParcel
-    val endOfPage = itemCount == page
-
+    val endOfPage = itemCount <= page * 20
 
     @Parcelize
     @Entity(tableName = "repos")
@@ -88,7 +87,10 @@ data class ItemHolder(
         @SerializedName("open_issues")
         val openIssues: Int,
 
-        var expand: Boolean = false
+        var expand: Boolean = false,
+
+        var createdAt: Long
+
 
     ) : Parcelable
 

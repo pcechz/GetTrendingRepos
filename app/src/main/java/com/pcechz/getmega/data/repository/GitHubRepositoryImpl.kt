@@ -14,7 +14,7 @@ class GitHubRepositoryImpl(private val pagingSource: GithubPagingSource): Github
             config = PagingConfig(
                 pageSize = 20,
                 enablePlaceholders = true,
-                maxSize = 30,
+                maxSize = 50,
                 prefetchDistance = 5,
                 initialLoadSize = 40),
             pagingSourceFactory = { pagingSource }

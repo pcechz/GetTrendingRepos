@@ -19,7 +19,9 @@ class GithubRxRemoteRepositoryImpl  @Inject constructor  (
             config = PagingConfig(
                 pageSize = 20,
                 enablePlaceholders = true,
-                maxSize = 100,
+                maxSize = 50,
+                prefetchDistance = 5,
+                initialLoadSize = 40
                 ),
             remoteMediator = remoteMediator,
             pagingSourceFactory = { database.RepoRxDao().selectAll() }

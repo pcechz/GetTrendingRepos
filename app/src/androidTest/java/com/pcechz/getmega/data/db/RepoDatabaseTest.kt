@@ -40,9 +40,11 @@ import java.io.IOException
         val repos = listOf(TestRepoData.repos[1], TestRepoData.repos[2])
         repoDao.insertAll(repos)
 
-        val allRepos =  repoDao.selectAll()
+        val allRepos =  repoDao.getAll()
         assertEquals(repos, allRepos)
     }
+
+
 
     @Test
     fun test_repos_ordered_by_correctly() {
@@ -52,7 +54,7 @@ import java.io.IOException
             TestRepoData.repos[4])
         repoDao.insertAll(repos)
 
-        val allRepos = repoDao.selectAll()
+        val allRepos = repoDao.getAll()
         val expectedRepos = repos.sortedByDescending { it.stars }
         assertEquals(expectedRepos, allRepos)
     }
@@ -70,7 +72,7 @@ import java.io.IOException
         repoDao.insertAll(repos)
         repoDao.insertAll(repos2)
 
-        val allRepos = repoDao.selectAll()
+        val allRepos = repoDao.getAll()
         val expectedRepos = listOf(
             TestRepoData.repos[1],
             TestRepoData.repos[2],
@@ -103,14 +105,17 @@ import java.io.IOException
             "2015-03-06T22:54:58Z $it",
             "2021-04-22T19:01:42Z $it",
             8917 + it.toInt(),
-            false
+            false,
+            createdAt = System.currentTimeMillis()
 
         ) }
         repoDao.insertAll(repos)
 
-        val retrievedRepo = repoDao.selectAll()
+        val retrievedRepo = repoDao.getAll()
         assertEquals(10, retrievedRepo.size)
     }
+
+
 
 
 }

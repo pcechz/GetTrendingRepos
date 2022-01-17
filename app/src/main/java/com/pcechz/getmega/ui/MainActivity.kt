@@ -1,12 +1,16 @@
 package com.pcechz.getmega.ui
 
+import android.app.Activity
+import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.util.DisplayMetrics
+import android.util.Log
 import android.widget.PopupMenu
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import com.pcechz.getmega.R
 import com.pcechz.getmega.databinding.ActivityMainBinding
+import kotlin.math.sqrt
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,6 +20,24 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        val metrics = DisplayMetrics()
+        windowManager.defaultDisplay.getMetrics(metrics)
+
+        val yInches = metrics.heightPixels / metrics.ydpi
+        val xInches = metrics.widthPixels / metrics.xdpi
+        val diagonalInches = sqrt((xInches * xInches + yInches * yInches).toDouble())
+        requestedOrientation = if (diagonalInches >= 6.5) {
+            ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+        } else {
+            ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
+
+
+
+
+
+
+
 
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)

@@ -29,7 +29,8 @@ class RepoMapper {
                         it.createDate,
                         it.updateDate,
                         it.openIssues,
-                        it.expand
+                        it.expand,
+                        createdAt = System.currentTimeMillis()
                     )
                 }
             )

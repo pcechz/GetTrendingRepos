@@ -1,5 +1,6 @@
 package com.pcechz.getmega.data.repository
 
+import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -71,16 +72,20 @@ class GithubRxRemoteMediator (
             if (loadType == LoadType.REFRESH) {
                 database.RepoRemoteKeysRxDao().clearRemoteKeys()
                 database.RepoRxDao().clearRepos()
+                database.RepoRxDao().clearRepos2Hours()
             }
 
             val prevKey = if (page == 1) null else page - 1
             val nextKey = if (data.endOfPage) null else page + 1
+
             val keys = data.results.map {
                 ItemHolder.RepoRemoteKeys(repoId = it.id, prevKey = prevKey, nextKey = nextKey)
             }
-            database.RepoRemoteKeysRxDao().insertAll(keys)
-            database.RepoRxDao().insertAll(data.results)
-            database.setTransactionSuccessful()
+//            database.RepoRxDao().clearRepos2Hours()
+
+//            database.RepoRemoteKeysRxDao().insertAll(keys)
+//           database.RepoRxDao().insertAll(data.results)
+//            database.setTransactionSuccessful()
 
         } finally {
             database.endTransaction()
